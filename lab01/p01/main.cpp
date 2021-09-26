@@ -2,6 +2,9 @@
 
 int main()
 {
-    std::cout << "Hello, C++" <<__cplusplus << "\n";
+#ifdef AUCA_DEBUG
+   std::cout << "Author: Burkanov Esenbek" << std::endl;
+#endif
+    std::cout << "Hello, C++ " <<__cplusplus << " !!!\n";
 }
 
