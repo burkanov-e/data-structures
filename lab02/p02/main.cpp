@@ -14,13 +14,12 @@ int main()
 
     for (int i = 0; i < n; i++)
     {
-        int count = 0;
-        int input;
+        long long int input;
         cin >> input;
 
-        int j = 1 + 8 * input;
-        int div = (1 - sqrt(j)) / 2;
+        double j = 1 + 8 * input;
+        double div = (-1 + sqrt(j)) / 2;
 
-        cout << div << "\n";
+        cout << (long long int)div << "\n";
     }
 }
