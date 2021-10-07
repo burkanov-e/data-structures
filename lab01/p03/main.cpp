@@ -1,15 +1,33 @@
+#include <iomanip>
 #include <iostream>
 #include <string>
 
-using namespace std; 
+using namespace std;
 
 int main()
 {
-    string name;
-    cin >> name;
 
-    int grade;
-    cin >> grade;
+    const int kNameWidth = 30;
+    const int kAvgWidth = 40;
+    cout << setfill('.') << fixed;
+    for (string name; cin >> name;)
+    {
+        double sum = 0;
+        int nGrades = 0;
 
-    cout << name << " " << grade << "\n";
+        for (int grade; cin >> grade;)
+        {
+            sum += grade;
+            ++nGrades;
+        }
+        if (nGrades != 0)
+        {
+            cout << left << setw(kNameWidth) << name << right << setw(kAvgWidth) << setprecision(2) << sum / nGrades << "\n";
+        }
+        else
+        {
+            cout << left << setw(kNameWidth) << name << "|" << right << setw(kAvgWidth) << "No Data\n";
+        }
+        cin.clear();
+    }
 }
