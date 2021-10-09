@@ -16,10 +16,13 @@ int main()
         {
             break;
         }
+
         int mn = min(a, b);
         int mx = max(a, b);
+
         int d = mx - mn;
         int c = 99 - mx + mn + 1;
+
         int an = min(c, d);
         cout << an << "\n";
     }
