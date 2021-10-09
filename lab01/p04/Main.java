@@ -11,6 +11,8 @@ public class Main {
             System.out.println(isPalindrome(line) ? "palindrome" : "not a palindrome");
         }
 
+        inp.close();
+
     }
 
     static boolean isPalindrome(String line) {
