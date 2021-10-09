@@ -17,8 +17,10 @@ int main()
         int a, b, c;
         cin >> a >> b >> c;
 
-        int ans = max(a, min(b, c));
+        int mx = max(a, max(b, c));
+        int mn = min(a, min(b, c));
+        int mid = (a + b + c) - (mx + mn);
 
-        cout << "Case " << i + 1 << ": " << ans << "\n";
+        cout << "Case " << i + 1 << ": " << mid << "\n";
     }
 }
