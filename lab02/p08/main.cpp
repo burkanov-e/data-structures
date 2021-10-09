@@ -9,6 +9,28 @@ int main()
 {
     iostream::sync_with_stdio(false);
 
-    char inp;
-    cin >> inp;
-}
+    int letter = 0;
+
+    for (char ch; cin.get(ch);)
+    {
+        if (ch == '\"')
+        {
+            letter++;
+            if (letter % 2 != 0)
+            {
+                cout.put('`');
+                cout.put('`');
+            }
+
+            else
+            {
+                cout.put('\'');
+                cout.put('\'');
+            }
+        }
+
+        else
+        {
+            cout.put(ch);
+        }
+    }
