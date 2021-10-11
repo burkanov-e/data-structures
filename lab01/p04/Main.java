@@ -8,24 +8,21 @@ public class Main {
 
         while (inp.hasNextLine()) {
             String line = inp.nextLine();
-            System.out.println(isPalindrome(line) ? "palindrome" : "not a palindrome");
+
+            StringBuilder buff = new StringBuilder();
+            for (char c : line.toCharArray()) {
+                if (Character.isLetter(c)) {
+                    buff.append(Character.toLowerCase(c));
+                }
+            }
+
+            StringBuilder temp = buff;
+
+            temp.reverse();
+
+            System.out.println(buff.toString().equals(temp.toString()) ? "palindrome" : "not a palindrome");
         }
 
         inp.close();
-
-    }
-
-    static boolean isPalindrome(String line) {
-        StringBuilder builder = new StringBuilder();
-        for (char c : line.toCharArray()) {
-            if (Character.isLetter(c)) {
-                builder.append(Character.toLowerCase(c));
-            }
-        }
-
-        StringBuilder tmp = builder;
-        tmp.reverse();
-
-        return builder.toString().equals(tmp.toString());
     }
 }
