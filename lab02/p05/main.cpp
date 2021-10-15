@@ -9,30 +9,34 @@ int main()
 {
     iostream::sync_with_stdio(false);
 
-    while (true)
-    {
+    int n, m, i = 1;
 
-        int n;
-        int m;
-        cin >> n >> m;
+    while (cin >> n >> m)
+    {
+        int div = 0;
 
         if (n == 0 && m == 0)
         {
             break;
         }
-        int x = n - m;
-        int div = x / m;
-        int count = 1;
 
-        if (x <= 26)
+        int x = n - m;
+        div = x / m;
+
+        if (x > (m * 26))
         {
-            cout << "Case " << count << ": " << div;
-            count++;
+            cout << "Case " << i++ << ": impossible"
+                 << "\n";
+            continue;
+        }
+
+        if (div * m == x)
+        {
+            cout << "Case " << i++ << ": " << div << "\n";
         }
         else
         {
-            cout << "Case " << count << ": impossible";
-            count++;
+            cout << "Case " << i++ << ": " << div + 1 << "\n";
         }
     }
 }
