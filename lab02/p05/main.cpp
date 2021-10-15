@@ -30,6 +30,12 @@ int main()
             continue;
         }
 
+        if (n == m || n < m)
+        {
+            cout << "Case " << i++ << ": " << 0 << "\n";
+            continue;
+        }
+
         if (div * m == x)
         {
             cout << "Case " << i++ << ": " << div << "\n";
