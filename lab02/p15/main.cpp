@@ -15,7 +15,7 @@ int main()
     {
         vector<string> arrStr;
         vector<int> arrInt;
-        int maxmax;
+        int maxmax = 0;
 
         for (int i = 0; i < 10; i++)
         {
