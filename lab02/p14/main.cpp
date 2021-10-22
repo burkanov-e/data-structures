@@ -11,6 +11,7 @@ int main()
 
     int testCase;
     cin >> testCase;
+    cout << "Lumberjacks:\n";
 
     for (int i = 0; i < testCase; i++)
     {
