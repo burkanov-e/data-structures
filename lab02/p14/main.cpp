@@ -11,6 +11,7 @@ int main()
 
     int testCase;
     cin >> testCase;
+
     for (int i = 0; i < testCase; i++)
     {
         vector<int> arr;
@@ -30,7 +31,7 @@ int main()
             int temp = arr.size() - 1;
             for (int j = 0; j < temp; j++)
             {
-                if (arr[i] > arr[i + 1])
+                if (arr[j] > arr[j + 1])
                 {
                     isOrdered = false;
                 }
@@ -41,7 +42,7 @@ int main()
             int temp = arr.size() - 1;
             for (int j = 0; j < temp; j++)
             {
-                if (arr[i + 1] > arr[i])
+                if (arr[j + 1] > arr[j])
                 {
                     isOrdered = false;
                 }
