@@ -26,7 +26,9 @@ int main()
 
         if (arr[0] < arr[1])
         {
-            for (int j = 0; j < arr.size(); j++)
+
+            int temp = arr.size() - 1;
+            for (int j = 0; j < temp; j++)
             {
                 if (arr[i] > arr[i + 1])
                 {
@@ -36,7 +38,8 @@ int main()
         }
         else
         {
-            for (int j = 0; j < arr.size(); j++)
+            int temp = arr.size() - 1;
+            for (int j = 0; j < temp; j++)
             {
                 if (arr[i + 1] > arr[i])
                 {
