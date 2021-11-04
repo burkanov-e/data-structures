@@ -58,7 +58,7 @@ void printDeck(const vector<int> &deck)
         "Ace",
     };
 
-    vector<string> suits = {"Clubs", "Diamonds", "Hearts", "Spides"};
+    vector<string> suits = {"Clubs", "Diamonds", "Hearts", "Spades"};
 
     for (auto card : deck)
     {
