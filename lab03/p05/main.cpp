@@ -91,23 +91,18 @@ class Computer {
                 case 2:
                     runCommand2(d1, d2);
                     break;
-
                 case 3:
                     runCommand3(d1, d2);
                     break;
-
                 case 4:
                     runCommand4(d1, d2);
                     break;
-
                 case 5:
                     runCommand5(d1, d2);
                     break;
-
                 case 6:
                     runCommand6(d1, d2);
                     break;
-
                 case 7:
                     runCommand7(d1, d2);
                     break;
@@ -120,7 +115,6 @@ class Computer {
                 case 0:
                     runCommand0(d1, d2);
                     break;
-
                 default:
                     break;
             }
@@ -143,5 +137,9 @@ int main() {
         comp.readCommands(cin);
 
         cout << comp.run() << "\n";
+
+        if (test != tests - 1) {
+            cout << "\n";
+        }
     }
 }
