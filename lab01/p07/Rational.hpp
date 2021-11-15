@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cctype>
 #include <iosfwd>
 #include <stdexcept>
 
@@ -15,7 +16,6 @@ class Rational {
         if (mDen == 0) {
             throw std::runtime_error("Rational: denominator is equal to zero");
         }
-
         // euclid's algorithm
         T a = mNum < 0 ? -mNum : mNum;
         T b = mDen < 0 ? -mDen : mDen;
@@ -106,4 +106,44 @@ template <typename T>
 std::ostream &operator<<(std::ostream &out, const Rational<T> &r) {
     out << r.num() << "/" << r.den();
     return out;
+}
+
+template <typename T>
+std::istream &operator>>(std::istream &inp, Rational<T> &r) {
+    T num;
+    if (!(inp >> num)) {
+        return inp;
+    }
+
+    char ch;
+    if (!inp.get(
+            ch))  // we do not skip whitespaces. For "1 /2" it assigns ' ' to ch
+    {
+        return inp;
+    }
+
+    if (ch != '/') {
+        inp.setstate(std::ios_base::failbit);
+        return inp;
+    }
+
+    if (!inp.get(ch)) {
+        return inp;
+    }
+
+    if (ch == '+' || ch == '-' || isdigit(ch)) {
+        inp.putback(ch);
+    } else {
+        inp.putback(ch);
+        inp.setstate(std::ios_base::failbit);
+        return inp;
+    }
+    T den;
+
+    if (!(inp >> den)) {
+        return inp;
+    }
+
+    r = Rational<T>(num, den);
+    return inp;
 }
