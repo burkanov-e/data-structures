@@ -174,3 +174,21 @@ TEST_CASE("vector<T>::iterators") {
 
     REQUIRE(it3->getID() == 1001);
 }
+
+TEST_CASE("erase method") {
+    vector<int> v = {4, 1, 2, 7, 6};
+    REQUIRE(v[3] == 7);
+
+    v.erase(v.begin() + 3);
+
+    REQUIRE(v[3] == 6);
+}
+
+TEST_CASE("insert method") {
+    vector<int> v = {4, 1, 2, 7, 6};
+    REQUIRE(v[3] == 7);
+
+    v.insert(v.begin() + 3, 10);
+
+    REQUIRE(v[3] == 10);
+}
