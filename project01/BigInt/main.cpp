@@ -14,3 +14,23 @@ TEST_CASE("Default constructor") {
 
     REQUIRE(sout.str() == "0");
 }
+
+TEST_CASE("Default constructor") {
+    ostringstream sout;
+
+    SUBCASE("First Case: 555") {
+        BigInt a("123");
+
+        sout << a;
+
+        REQUIRE(sout.str() == "123");
+    }
+
+    SUBCASE("Second Case: -1234567890") {
+        BigInt a("-1234567890");
+
+        sout << a;
+
+        REQUIRE(sout.str() == "-1234567890");
+    }
+}

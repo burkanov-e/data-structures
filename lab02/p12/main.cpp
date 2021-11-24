@@ -1,18 +1,17 @@
 #include <bits/stdc++.h>
 
 template <typename C>
-int sz(const C &c) { return static_cast<int>(c.size()); }
+int sz(const C &c) {
+    return static_cast<int>(c.size());
+}
 
 using namespace std;
 
-void computeDigits(int n)
-{
+void computeDigits(int n) {
     int sum = 0;
 
-    while (n > 0 || sum > 9)
-    {
-        if (n == 0)
-        {
+    while (n > 0 || sum > 9) {
+        if (n == 0) {
             n = sum;
             sum = 0;
         }
@@ -23,14 +22,11 @@ void computeDigits(int n)
     cout << sum << "\n";
 }
 
-int main()
-{
+int main() {
     iostream::sync_with_stdio(false);
     int n;
-    while (cin >> n)
-    {
-        if (n == 0)
-        {
+    while (cin >> n) {
+        if (n == 0) {
             break;
         }
         computeDigits(n);
