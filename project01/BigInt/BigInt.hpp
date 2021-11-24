@@ -13,7 +13,7 @@ class BigInt {
    public:
     BigInt() : mIsNegative(false) { mDigits.push_back(0); }
 
-    BigInt(const std::string value) : mIsNegative(false) {
+    BigInt(const std::string &value) : mIsNegative(false) {
         size_t i = 0;
 
         if (value[i] == '-' || value[i] == '+') {
@@ -26,7 +26,7 @@ class BigInt {
                 throw std::runtime_error(
                     "BigInt: incorrect string initializer");
             }
-            mDigits.push_back(value[i]);
+            mDigits.push_back(value[i] - '0');
         }
     }
 };
