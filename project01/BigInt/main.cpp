@@ -67,3 +67,23 @@ TEST_CASE("BigInt with long long") {
         REQUIRE(sout.str() == "-9228372036854775808");
     }
 }
+
+TEST_CASE("operator+") {
+    ostringstream sout;
+
+    SUBCASE("123 + 19") {
+        BigInt x(123);
+        BigInt y(19);
+
+        sout << x + y;
+        REQUIRE(sout.str() == "142");
+    }
+
+    SUBCASE("999999999 + 1") {
+        BigInt x(999999999);
+        BigInt y(1);
+
+        sout << x + y;
+        REQUIRE(sout.str() == "1000000000");
+    }
+}
