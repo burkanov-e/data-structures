@@ -61,10 +61,10 @@ TEST_CASE("Constructor with string") {
 
 TEST_CASE("BigInt with long long") {
     ostringstream sout;
-    SUBCASE("-9228372036854775808") {
+    SUBCASE("-9223372036854775808") {
         BigInt x(numeric_limits<long long>::min());
         sout << x;
-        REQUIRE(sout.str() == "-9228372036854775808");
+        REQUIRE(sout.str() == "-9223372036854775808");
     }
 }
 
@@ -85,5 +85,17 @@ TEST_CASE("operator+") {
 
         sout << x + y;
         REQUIRE(sout.str() == "1000000000");
+    }
+}
+
+TEST_CASE("operator-") {
+    ostringstream sout;
+
+    SUBCASE("123 - 19") {
+        BigInt x(123);
+        BigInt y(19);
+
+        sout << x - y;
+        REQUIRE(sout.str() == "104");
     }
 }
