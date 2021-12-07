@@ -12,6 +12,7 @@ class BigInt {
     friend std::ostream &operator<<(std::ostream &out, const BigInt &x);
     friend inline BigInt operator+(const BigInt &a, const BigInt &b);
     friend inline BigInt operator-(const BigInt &a, const BigInt &b);
+    friend inline BigInt operator-=(const BigInt &a, const BigInt &b);
 
     std::vector<int> mDigits;
     bool mIsNegative;
@@ -31,35 +32,6 @@ class BigInt {
             }
             if (j != b.mDigits.rend()) {
                 sum += *j;
-                ++j;
-            }
-            result.mDigits.push_back(sum % 10);
-            carry = sum / 10;
-        }
-
-        if (carry != 0) {
-            result.mDigits.push_back(carry);
-        }
-        std::reverse(result.mDigits.begin(), result.mDigits.end());
-
-        return result;
-    }
-
-    static BigInt subAbsValues(const BigInt &a, const BigInt &b) {
-        BigInt result;
-        result.mDigits.clear();
-        auto i = a.mDigits.rbegin();
-        auto j = b.mDigits.rbegin();
-
-        int carry = 0;
-        while (i != a.mDigits.rend() || j != b.mDigits.rend()) {
-            int sum = carry;
-            if (i != a.mDigits.rend()) {
-                sum -= *i;
-                ++i;
-            }
-            if (j != b.mDigits.rend()) {
-                sum -= *j;
                 ++j;
             }
             result.mDigits.push_back(sum % 10);
@@ -128,12 +100,16 @@ inline BigInt operator+(const BigInt &a, const BigInt &b) {
     throw std::runtime_error("not implemented yet");
 }
 
-inline BigInt operator-(const BigInt &a, const BigInt &b) {
-    if (a.mIsNegative == b.mIsNegative) {
-        BigInt result = BigInt::subAbsValues(a, b);
-        result.mIsNegative = a.mIsNegative;
-        return result;
-    }
+inline BigInt operator-=(const BigInt &a, const BigInt &b) {
+    auto i = a.mDigits.rbegin();
+    auto j = a.mDigits.rbegin();
 
-    throw std::runtime_error("not implemented yet");
+    while (i != a.mDigits.rend() || j != b.mDigits.rend()) {
+    }
+}
+
+inline BigInt operator-(const BigInt &a, const BigInt &b) {
+    BigInt result = a;
+    result -= b;
+    return result;
 }
