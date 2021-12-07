@@ -46,6 +46,39 @@ class BigInt {
         return result;
     }
 
+    static BigInt subAbsValues(const BigInt &a, const BigInt &b) {
+        BigInt result;
+        result.mDigits.clear();
+        auto i = a.mDigits.rbegin();
+        auto j = b.mDigits.rbegin();
+
+        int borrow = 0;
+        while (i != a.mDigits.rend()) {
+            int difference = *i - borrow;
+            i++;
+
+            if (j != b.mDigits.rend()) {
+                difference -= *j;
+                ++j;
+            }
+
+            if (difference < 0) {
+                difference += 10;
+                borrow = 1;
+            }
+
+            else {
+                borrow = 0;
+            }
+
+            result.mDigits.push_back(difference);
+
+            std::reverse(result.mDigits.begin(), result.mDigits.end());
+
+            return result;
+        }
+    }
+
    public:
     BigInt() : mIsNegative(false) { mDigits.push_back(0); }
 
@@ -100,16 +133,9 @@ inline BigInt operator+(const BigInt &a, const BigInt &b) {
     throw std::runtime_error("not implemented yet");
 }
 
-inline BigInt operator-=(const BigInt &a, const BigInt &b) {
-    auto i = a.mDigits.rbegin();
-    auto j = a.mDigits.rbegin();
-
-    while (i != a.mDigits.rend() || j != b.mDigits.rend()) {
-    }
-}
-
-inline BigInt operator-(const BigInt &a, const BigInt &b) {
-    BigInt result = a;
-    result -= b;
-    return result;
-}
+// inline BigInt operator-(const BigInt &a, const BigInt &b) {
+//     BigInt result;
+//     result = a;
+//     result -= b;
+//     return result;
+// }
