@@ -8,6 +8,25 @@ void printArray(int *beg, int *end) {
     printf("\n");
 }
 
+void reverse(int *beg, int *end) {
+    for (;;) {
+        if (beg == end) {
+            break;
+        }
+        end--;
+
+        if (beg == end) {
+            break;
+        }
+
+        int temp = *beg;
+        *beg = *end;
+        *end = temp;
+
+        beg++;
+    }
+}
+
 int main(void) {
     printf("the size of array: ");
 
@@ -23,6 +42,8 @@ int main(void) {
     for (int i = 0; i < n; i++) {
         scanf("%d", &dynArray[i]);
     }
+
+    reverse(dynArray, dynArray + n);
 
     printArray(dynArray, dynArray + n);
 
