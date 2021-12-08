@@ -36,7 +36,7 @@ int main(void) {
     while (scanf("%d", &x) == 1) {
         if (sz == cp) {
             cp = (cp == 0) ? 1 : 2 * cp;
-            int *newData = (int *)malloc((sizeof(int) * cp));
+            int *newData = (int *)malloc(sizeof(int) * cp);
             for (size_t i = 0; i < sz; ++i) {
                 newData[i] = data[i];
             }
