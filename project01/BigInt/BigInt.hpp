@@ -14,7 +14,12 @@ class BigInt {
     friend inline BigInt operator+=(const BigInt &a, const BigInt &b);
     friend inline BigInt operator-(const BigInt &a, const BigInt &b);
     friend inline BigInt operator-=(const BigInt &a, const BigInt &b);
+    friend bool operator==(const BigInt &a, const BigInt &b);
+    friend bool operator!=(const BigInt &a, const BigInt &b);
     friend bool operator<(const BigInt &a, const BigInt &b);
+    friend bool operator>(const BigInt &a, const BigInt &b);
+    friend bool operator<=(const BigInt &a, const BigInt &b);
+    friend bool operator>=(const BigInt &a, const BigInt &b);
 
     std::vector<int> mDigits;
     bool mIsNegative;
@@ -136,6 +141,12 @@ class BigInt {
     BigInt(long long x) : BigInt(std::to_string(x)) {}
 };
 
+bool operator==(const BigInt &a, const BigInt &b) {
+    return a.mDigits == b.mDigits;
+}
+
+bool operator!=(const BigInt &a, const BigInt &b) { return !(a == b); }
+
 bool operator<(const BigInt &a, const BigInt &b) {
     int i = a.mDigits.size();
     int j = b.mDigits.size();
@@ -150,6 +161,12 @@ bool operator<(const BigInt &a, const BigInt &b) {
     }
     return false;
 }
+
+bool operator>(const BigInt &a, const BigInt &b) { return b > a; }
+
+bool operator<=(const BigInt &a, const BigInt &b) { return !(a > b); }
+
+bool operator>=(const BigInt &a, const BigInt &b) { return !(a < b); }
 
 inline std::ostream &operator<<(std::ostream &out, const BigInt &x) {
     if (x.mIsNegative) {
