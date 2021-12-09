@@ -88,14 +88,14 @@ TEST_CASE("operator+") {
     }
 }
 
-TEST_CASE("operator-") {
-    ostringstream sout;
+// TEST_CASE("operator-") {
+//     ostringstream sout;
 
-    SUBCASE("123 - 19") {
-        BigInt x(123);
-        BigInt y(19);
+//     SUBCASE("123 - 19") {
+//         BigInt x(123);
+//         BigInt y(19);
 
-        sout << x - y;
-        REQUIRE(sout.str() == "104");
-    }
-}
+//         sout << x - y;
+//         REQUIRE(sout.str() == "104");
+//     }
+// }

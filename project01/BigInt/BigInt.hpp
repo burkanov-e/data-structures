@@ -11,6 +11,7 @@
 class BigInt {
     friend std::ostream &operator<<(std::ostream &out, const BigInt &x);
     friend inline BigInt operator+(const BigInt &a, const BigInt &b);
+    friend inline BigInt operator+=(const BigInt &a, const BigInt &b);
     friend inline BigInt operator-(const BigInt &a, const BigInt &b);
     friend inline BigInt operator-=(const BigInt &a, const BigInt &b);
 
@@ -46,9 +47,10 @@ class BigInt {
         return result;
     }
 
-    static BigInt subAbsValues(const BigInt &a, const BigInt &b) {
+    static BigInt subValues(const BigInt &a, const BigInt &b) {
         BigInt result;
         result.mDigits.clear();
+
         auto i = a.mDigits.rbegin();
         auto j = b.mDigits.rbegin();
 
@@ -73,11 +75,17 @@ class BigInt {
 
             result.mDigits.push_back(difference);
 
+            while (result.mDigits.size() > 1 && result.mDigits.back() == 0) {
+                result.mDigits.pop_back();
+            }
+
             std::reverse(result.mDigits.begin(), result.mDigits.end());
 
             return result;
         }
     }
+
+    static int cmpValues(const BigInt &a, const BigInt &b) {}
 
    public:
     BigInt() : mIsNegative(false) { mDigits.push_back(0); }
@@ -134,8 +142,11 @@ inline BigInt operator+(const BigInt &a, const BigInt &b) {
 }
 
 // inline BigInt operator-(const BigInt &a, const BigInt &b) {
-//     BigInt result;
-//     result = a;
-//     result -= b;
-//     return result;
+//     if (a.mIsNegative == b.mIsNegative) {
+//         BigInt result = BigInt::subAbsValues(a, b);
+//         result.mIsNegative = a.mIsNegative;
+//         return result;
+//     }
+
+//     throw std::runtime_error("not implemented yet");
 // }
