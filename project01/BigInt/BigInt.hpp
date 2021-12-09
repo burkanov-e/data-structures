@@ -14,6 +14,7 @@ class BigInt {
     friend inline BigInt operator+=(const BigInt &a, const BigInt &b);
     friend inline BigInt operator-(const BigInt &a, const BigInt &b);
     friend inline BigInt operator-=(const BigInt &a, const BigInt &b);
+    friend bool operator<(const BigInt &a, const BigInt &b);
 
     std::vector<int> mDigits;
     bool mIsNegative;
@@ -85,7 +86,23 @@ class BigInt {
         }
     }
 
-    static int cmpValues(const BigInt &a, const BigInt &b) {}
+    static int cmpValues(const BigInt &a, const BigInt &b) {
+        if (a.mDigits.size() < b.mDigits.size()) {
+            return -1;
+        }
+
+        if (a.mDigits.size() > b.mDigits.size()) {
+            return 1;
+        }
+
+        for (size_t i = 0; i < a.mDigits.size(); i++) {
+            if (a.mDigits[i] != b.mDigits[i]) {
+                return a.mDigits[i] - b.mDigits[i];
+            }
+        }
+
+        return 0;
+    }
 
    public:
     BigInt() : mIsNegative(false) { mDigits.push_back(0); }
@@ -119,6 +136,21 @@ class BigInt {
     BigInt(long long x) : BigInt(std::to_string(x)) {}
 };
 
+bool operator<(const BigInt &a, const BigInt &b) {
+    int i = a.mDigits.size();
+    int j = b.mDigits.size();
+
+    if (i != j) {
+        return i < j;
+    }
+    while (i--) {
+        if (a.mDigits[i] != b.mDigits[i]) {
+            return a.mDigits[i] < b.mDigits[i];
+        }
+    }
+    return false;
+}
+
 inline std::ostream &operator<<(std::ostream &out, const BigInt &x) {
     if (x.mIsNegative) {
         out << '-';
@@ -136,6 +168,11 @@ inline BigInt operator+(const BigInt &a, const BigInt &b) {
         BigInt result = BigInt::addAbsValues(a, b);
         result.mIsNegative = a.mIsNegative;
         return result;
+    }
+
+    int compare = BigInt::cmpValues(a, b);
+    if (compare == 0) {
+        return BigInt();
     }
 
     throw std::runtime_error("not implemented yet");
