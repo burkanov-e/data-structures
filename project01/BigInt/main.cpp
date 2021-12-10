@@ -88,6 +88,34 @@ TEST_CASE("operator+") {
     }
 }
 
+TEST_CASE("Comparison operators") {
+    ostringstream sout;
+
+    SUBCASE("123 < 19") {
+        BigInt x(123);
+        BigInt y(19);
+
+        sout << (x < y);
+        REQUIRE(sout.str() == "0");
+    }
+
+    SUBCASE("19 < 123") {
+        BigInt x(19);
+        BigInt y(123);
+
+        sout << (x < y);
+        REQUIRE(sout.str() == "1");
+    }
+
+    SUBCASE("19 < -18") {
+        BigInt x(19);
+        BigInt y(-18);
+
+        sout << (x < y);
+        REQUIRE(sout.str() == "1");
+    }
+}
+
 // TEST_CASE("operator-") {
 //     ostringstream sout;
 
