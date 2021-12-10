@@ -148,17 +148,22 @@ bool operator==(const BigInt &a, const BigInt &b) {
 bool operator!=(const BigInt &a, const BigInt &b) { return !(a == b); }
 
 bool operator<(const BigInt &a, const BigInt &b) {
-    int i = a.mDigits.size();
-    int j = b.mDigits.size();
+    if (a.mIsNegative && !b.mIsNegative) {
+        return true;
+    }
 
-    if (i != j) {
-        return i < j;
+    if (!a.mIsNegative && !b.mIsNegative) {
+        return false;
     }
-    while (i--) {
-        if (a.mDigits[i] != b.mDigits[i]) {
-            return a.mDigits[i] < b.mDigits[i];
-        }
+
+    if (a.mIsNegative && a.mIsNegative) {
+        return BigInt::cmpValues(a, b) > 0;
     }
+
+    if (!a.mIsNegative && b.mIsNegative) {
+        return BigInt::cmpValues(a, b) < 0;
+    }
+
     return false;
 }
 

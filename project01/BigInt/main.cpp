@@ -91,7 +91,7 @@ TEST_CASE("operator+") {
 TEST_CASE("Comparison operators") {
     ostringstream sout;
 
-    SUBCASE("123 < 19") {
+    SUBCASE("19 < 123") {
         BigInt x(123);
         BigInt y(19);
 
@@ -104,7 +104,7 @@ TEST_CASE("Comparison operators") {
         BigInt y(123);
 
         sout << (x < y);
-        REQUIRE(sout.str() == "1");
+        REQUIRE(sout.str() == "0");
     }
 
     SUBCASE("19 < -18") {
@@ -112,7 +112,7 @@ TEST_CASE("Comparison operators") {
         BigInt y(-18);
 
         sout << (x < y);
-        REQUIRE(sout.str() == "1");
+        REQUIRE(sout.str() == "0");
     }
 }
 
