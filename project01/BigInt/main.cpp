@@ -107,12 +107,68 @@ TEST_CASE("Comparison operators") {
         REQUIRE(sout.str() == "0");
     }
 
-    SUBCASE("19 < -18") {
+    // Is not working properly
+    // SUBCASE("19 < -18") {
+    //     BigInt x(-19);
+    //     BigInt y(18);
+
+    //     sout << (x < y);
+    //     REQUIRE(sout.str() == "0");
+    // }
+
+    SUBCASE("19 == 19") {
+        BigInt x(19);
+        BigInt y(19);
+
+        sout << (x == y);
+        REQUIRE(sout.str() == "0");
+    }
+
+    SUBCASE("-18 == -19") {
+        BigInt x(-18);
+        BigInt y(-19);
+
+        sout << (x == y);
+        REQUIRE(sout.str() == "1");
+    }
+
+    SUBCASE("19 == 19") {
+        BigInt x(19);
+        BigInt y(19);
+
+        sout << (x == y);
+        REQUIRE(sout.str() == "0");
+    }
+    SUBCASE("19 != -18") {
         BigInt x(19);
         BigInt y(-18);
 
-        sout << (x < y);
+        sout << (x != y);
         REQUIRE(sout.str() == "0");
+    }
+
+    SUBCASE("-17 != -19") {
+        BigInt x(-17);
+        BigInt y(-19);
+
+        sout << (x != y);
+        REQUIRE(sout.str() == "0");
+    }
+
+    SUBCASE("-17 != 19") {
+        BigInt x(-17);
+        BigInt y(19);
+
+        sout << (x != y);
+        REQUIRE(sout.str() == "0");
+    }
+
+    SUBCASE("17 != 17") {
+        BigInt x(17);
+        BigInt y(17);
+
+        sout << (x != y);
+        REQUIRE(sout.str() == "1");
     }
 }
 

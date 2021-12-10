@@ -142,10 +142,20 @@ class BigInt {
 };
 
 bool operator==(const BigInt &a, const BigInt &b) {
-    return a.mDigits == b.mDigits;
+    if (a.mDigits != b.mDigits) {
+        return 1;
+    }
+
+    return BigInt::cmpValues(a, b);
 }
 
-bool operator!=(const BigInt &a, const BigInt &b) { return !(a == b); }
+bool operator!=(const BigInt &a, const BigInt &b) {
+    if (a.mDigits != b.mDigits) {
+        return 0;
+    }
+
+    return 1;
+}
 
 bool operator<(const BigInt &a, const BigInt &b) {
     if (a.mIsNegative && !b.mIsNegative) {
