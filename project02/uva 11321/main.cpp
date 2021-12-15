@@ -51,6 +51,6 @@ int main() {
         for (auto &sort : v) {
             cout << sort << "\n";
         }
-        cout << 0 << " " << 0 << "\n";
     }
+    cout << 0 << " " << 0 << "\n";
 }
