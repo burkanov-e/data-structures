@@ -18,6 +18,7 @@ int main() {
 
     int tcase;
     cin >> tcase;
+    int CASE = 1;
     while (tcase--) {
         int r, c, m, n;
         cin >> r >> c >> m >> n;
@@ -57,7 +58,7 @@ int main() {
             }
         }
 
-        int CASE = 1;
-        cout << "Case " << CASE++ << ": " << ans << "\n";
+        cout << "Case " << CASE << ": " << ans << "\n";
+        CASE++;
     }
 }
