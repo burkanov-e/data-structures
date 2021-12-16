@@ -53,13 +53,11 @@ int main() {
             }
 
             else {
-                if (txt[i].mCount == txt[0].mCount) {
-                    ans += txt[i].mCount * m;
-                }
+                ans += txt[i].mCount * n;
             }
         }
 
-        int CASE = 0;
+        int CASE = 1;
         cout << "Case " << CASE++ << ": " << ans << "\n";
     }
 }
