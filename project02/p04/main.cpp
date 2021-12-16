@@ -53,5 +53,9 @@ int main() {
         for (auto s : txt) {
             cout << s.mSequence << "\n";
         }
+
+        if (test_case) {
+            cout << "\n";
+        }
     }
 }
