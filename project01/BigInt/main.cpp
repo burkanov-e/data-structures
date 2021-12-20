@@ -104,24 +104,32 @@ TEST_CASE("Comparison operators") {
         BigInt y(123);
 
         sout << (x < y);
-        REQUIRE(sout.str() == "0");
+        REQUIRE(sout.str() == "1");
     }
 
     // Is not working properly
-    // SUBCASE("19 < -18") {
-    //     BigInt x(-19);
-    //     BigInt y(18);
+    SUBCASE("-19 < 18") {
+        BigInt x(-19);
+        BigInt y(18);
 
-    //     sout << (x < y);
-    //     REQUIRE(sout.str() == "0");
-    // }
+        sout << (x < y);
+        REQUIRE(sout.str() == "0");
+    }
+
+    SUBCASE("5 > 1") {
+        BigInt x(5);
+        BigInt y(1);
+
+        sout << (x > y);
+        REQUIRE(sout.str() == "1");
+    }
 
     SUBCASE("19 == 19") {
         BigInt x(19);
         BigInt y(19);
 
         sout << (x == y);
-        REQUIRE(sout.str() == "0");
+        REQUIRE(sout.str() == "1");
     }
 
     SUBCASE("-18 == -19") {
@@ -129,7 +137,7 @@ TEST_CASE("Comparison operators") {
         BigInt y(-19);
 
         sout << (x == y);
-        REQUIRE(sout.str() == "1");
+        REQUIRE(sout.str() == "0");
     }
 
     SUBCASE("19 == 19") {
@@ -137,14 +145,14 @@ TEST_CASE("Comparison operators") {
         BigInt y(19);
 
         sout << (x == y);
-        REQUIRE(sout.str() == "0");
+        REQUIRE(sout.str() == "1");
     }
     SUBCASE("19 != -18") {
         BigInt x(19);
         BigInt y(-18);
 
         sout << (x != y);
-        REQUIRE(sout.str() == "0");
+        REQUIRE(sout.str() == "1");
     }
 
     SUBCASE("-17 != -19") {
@@ -152,7 +160,7 @@ TEST_CASE("Comparison operators") {
         BigInt y(-19);
 
         sout << (x != y);
-        REQUIRE(sout.str() == "0");
+        REQUIRE(sout.str() == "1");
     }
 
     SUBCASE("-17 != 19") {
@@ -160,7 +168,7 @@ TEST_CASE("Comparison operators") {
         BigInt y(19);
 
         sout << (x != y);
-        REQUIRE(sout.str() == "0");
+        REQUIRE(sout.str() == "1");
     }
 
     SUBCASE("17 != 17") {
@@ -168,7 +176,7 @@ TEST_CASE("Comparison operators") {
         BigInt y(17);
 
         sout << (x != y);
-        REQUIRE(sout.str() == "1");
+        REQUIRE(sout.str() == "0");
     }
 }
 

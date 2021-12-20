@@ -91,18 +91,28 @@ class BigInt {
         }
     }
 
-    static int cmpValues(const BigInt &a, const BigInt &b) {
+    static bool cmpValues(const BigInt &a, const BigInt &b) {
+        if (!a.mIsNegative == b.mIsNegative) {
+            return true;
+        } else if (a.mIsNegative == !b.mIsNegative) {
+            return false;
+        }
+
         if (a.mDigits.size() < b.mDigits.size()) {
-            return -1;
+            return false;
         }
 
         if (a.mDigits.size() > b.mDigits.size()) {
-            return 1;
+            return true;
         }
 
         for (size_t i = 0; i < a.mDigits.size(); i++) {
             if (a.mDigits[i] != b.mDigits[i]) {
-                return a.mDigits[i] - b.mDigits[i];
+                if (a.mDigits[i] - b.mDigits[i] < 0) {
+                    return false;
+                } else {
+                    return true;
+                }
             }
         }
 
@@ -141,47 +151,56 @@ class BigInt {
     BigInt(long long x) : BigInt(std::to_string(x)) {}
 };
 
-bool operator==(const BigInt &a, const BigInt &b) {
-    if (a.mDigits != b.mDigits) {
-        return 1;
+inline bool operator==(const BigInt &a, const BigInt &b) {
+    if (a.mIsNegative == b.mIsNegative) {
+        if (a.mDigits.size() == b.mDigits.size()) {
+            auto it1 = a.mDigits.begin();
+            auto it2 = b.mDigits.begin();
+            while (it1 != a.mDigits.end() && it2 != b.mDigits.end()) {
+                if (*it1 - *it2 != 0) {
+                    return false;
+                }
+                it1++;
+                it2++;
+            }
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
     }
 
     return BigInt::cmpValues(a, b);
 }
 
-bool operator!=(const BigInt &a, const BigInt &b) {
-    if (a.mDigits != b.mDigits) {
-        return 0;
-    }
-
-    return 1;
-}
-
-bool operator<(const BigInt &a, const BigInt &b) {
-    if (a.mIsNegative && !b.mIsNegative) {
-        return true;
-    }
-
-    if (!a.mIsNegative && !b.mIsNegative) {
+inline bool operator!=(const BigInt &a, const BigInt &b) {
+    if (a.mDigits == b.mDigits) {
         return false;
     }
 
-    if (a.mIsNegative && a.mIsNegative) {
-        return BigInt::cmpValues(a, b) > 0;
-    }
-
-    if (!a.mIsNegative && b.mIsNegative) {
-        return BigInt::cmpValues(a, b) < 0;
-    }
-
-    return false;
+    return true;
 }
 
-bool operator>(const BigInt &a, const BigInt &b) { return b > a; }
+inline bool operator<(const BigInt &a, const BigInt &b) {
+    if (a == b) {
+        return false;
+    } else if (BigInt::cmpValues(a, b) > 0) {
+        return false;
+    } else {
+        return true;
+    }
+}
 
-bool operator<=(const BigInt &a, const BigInt &b) { return !(a > b); }
+inline bool operator>(const BigInt &a, const BigInt &b) {
+    return BigInt::cmpValues(a, b);
+}
 
-bool operator>=(const BigInt &a, const BigInt &b) { return !(a < b); }
+// inline bool operator>(const BigInt &a, const BigInt &b) { return b > a; }
+
+inline bool operator<=(const BigInt &a, const BigInt &b) { return !(a > b); }
+
+inline bool operator>=(const BigInt &a, const BigInt &b) { return !(a < b); }
 
 inline std::ostream &operator<<(std::ostream &out, const BigInt &x) {
     if (x.mIsNegative) {
