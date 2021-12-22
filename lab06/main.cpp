@@ -148,6 +148,38 @@ void p03() {
     }
 }
 
+void p0401() {
+    vector<int> v;
+
+    for (int x; cin >> x;) {
+        v.push_back(x);
+    }
+
+    auto minIndex = min_element(begin(v), end(v)) - begin(v);
+
+    if (v.empty()) {
+        cout << "not found" << '\n';
+    } else {
+        cout << minIndex << '\n';
+    }
+}
+
+void p0402() {
+    vector<int> v;
+
+    for (int x; cin >> x;) {
+        v.push_back(x);
+    }
+
+    auto minIndex = auMinElement(begin(v), end(v)) - begin(v);
+
+    if (v.empty()) {
+        cout << "not found" << '\n';
+    } else {
+        cout << minIndex << '\n';
+    }
+}
+
 struct CmpByGpa {
     bool operator()(const Student &s1, const Student &s2) const {
         return s1.mGpa < s2.mGpa;
@@ -239,7 +271,10 @@ int main() {
 
     // p03();
 
+    // p0401();
+    p0402();
+
     // p06();
 
-    p07();
+    // p07();
 }

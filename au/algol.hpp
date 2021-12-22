@@ -51,3 +51,18 @@ ForwardIter auFindIf(ForwardIter beg, ForwardIter end,
 
     return beg;
 }
+
+template <typename ForwardIter>
+ForwardIter auMinElement(ForwardIter beg, ForwardIter end) {
+    if (beg == end) {
+        return end;
+    }
+
+    ForwardIter small = beg;
+
+    while (++beg != end)
+        if (*beg < *small) {
+            small = beg;
+        }
+    return small;
+}
