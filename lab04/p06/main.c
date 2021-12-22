@@ -61,7 +61,7 @@ void p02() {
     reverse(v.data, v.data + v.sz);
     printArray(v.data, v.data + v.sz);
 
-    // VecInt_destroy(&v);
+    VecInt_destroy(&v);
 }
 
 int main(void) { p01(); }
