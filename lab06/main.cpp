@@ -2,6 +2,8 @@
 #include <iostream>
 #include <iterator>
 #include <string>
+#include <tuple>
+#include <utility>
 #include <vector>
 
 #include "../au/algol.hpp"
@@ -338,6 +340,28 @@ void p08() {
     }
 }
 
+void p09() {
+    using Employee = tuple<string, int, double>;
+    vector<tuple<string, int, double>> employees;
+
+    string name;
+    int age;
+    double salary;
+
+    while (cin >> name >> age >> salary) {
+        employees.emplace_back(name, age, salary);
+    }
+
+    sort(begin(employees), end(employees),
+         [](const Employee &e1, const Employee &e2) {
+             return get<1>(e1) < get<1>(e2);
+         });
+
+    for (const auto &s : employees) {
+        cout << get<0>(s) << ", " << get<1>(s) << ", " << get<2>(s) << '\n';
+    }
+}
+
 int main() {
     // p0101();
     // p0102();
@@ -355,5 +379,7 @@ int main() {
 
     // p07();
 
-    p08();
+    // p08();
+
+    p09();
 }
