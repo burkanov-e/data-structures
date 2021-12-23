@@ -180,6 +180,64 @@ void p0402() {
     }
 }
 
+void p0501() {
+    vector<Student> stud;
+
+    string name;
+    double gpa;
+
+    while (cin >> name >> gpa) {
+        stud.emplace_back(name, gpa);
+    }
+
+    auto minGpa = min_element(begin(stud), end(stud),
+                              [](const Student &s1, const Student &s2) {
+                                  return s1.mGpa < s2.mGpa;
+                              }) -
+                  begin(stud);
+
+    auto minName = min_element(begin(stud), end(stud),
+                               [](const Student &s1, const Student &s2) {
+                                   return s1.mName < s2.mName;
+                               }) -
+                   begin(stud);
+
+    if (!stud.empty()) {
+        cout << minGpa << '\n';
+    } else {
+        cout << "not found" << '\n';
+    }
+}
+
+void p0502() {
+    vector<Student> stud;
+
+    string name;
+    double gpa;
+
+    while (cin >> name >> gpa) {
+        stud.emplace_back(name, gpa);
+    }
+
+    auto minGpa = auMinElement_sec(begin(stud), end(stud),
+                                   [](const Student &s1, const Student &s2) {
+                                       return s1.mGpa < s2.mGpa;
+                                   }) -
+                  begin(stud);
+
+    auto minName = auMinElement_sec(begin(stud), end(stud),
+                                    [](const Student &s1, const Student &s2) {
+                                        return s1.mName < s2.mName;
+                                    }) -
+                   begin(stud);
+
+    if (!stud.empty()) {
+        cout << minGpa << '\n';
+    } else {
+        cout << "not found" << '\n';
+    }
+}
+
 struct CmpByGpa {
     bool operator()(const Student &s1, const Student &s2) const {
         return s1.mGpa < s2.mGpa;
@@ -272,8 +330,9 @@ int main() {
     // p03();
 
     // p0401();
-    p0402();
+    // p0402();
 
+    p0502();
     // p06();
 
     // p07();
