@@ -362,6 +362,30 @@ void p09() {
     }
 }
 
+void p1001() {
+    vector<int> v = {0, 4, 5, 10, 12, 20, 25, 40};
+
+    for (int x; cin >> x;) {
+        if (binary_search(begin(v), end(v), x)) {
+            cout << "Yes\n";
+        } else {
+            cout << "No\n";
+        }
+    }
+}
+
+void p1002() {
+    vector<int> v = {0, 4, 5, 10, 12, 20, 25, 40};
+
+    for (int x; cin >> x;) {
+        if (auBinarySearch(begin(v), end(v), x)) {
+            cout << "Yes\n";
+        } else {
+            cout << "No\n";
+        }
+    }
+}
+
 int main() {
     // p0101();
     // p0102();
@@ -381,5 +405,6 @@ int main() {
 
     // p08();
 
-    p09();
+    // p1001();
+    p1002();
 }
