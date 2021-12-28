@@ -15,7 +15,7 @@ int main() {
     int numOfCups;
     cin >> numOfCups;
 
-    vector<pair<string, int>> cups;
+    vector<pair<int, string>> cups;
 
     while (numOfCups--) {
         string color;
@@ -31,12 +31,12 @@ int main() {
             rad = stoi(radInp);
         }
 
-        cups.emplace_back(color, rad);
+        cups.emplace_back(rad, color);
     }
 
     sort(begin(cups), end(cups));
 
     for (auto s : cups) {
-        cout << s.first << '\n';
+        cout << s.second << endl;
     }
 }
