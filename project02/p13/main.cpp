@@ -40,6 +40,7 @@ int main() {
             printAns(words, width);
             cout << '\n';
 
+            width = 0;
             words.clear();
             continue;
         }
