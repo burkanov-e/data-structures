@@ -122,7 +122,7 @@ class BigInt {
    public:
     BigInt() : mIsNegative(false) { mDigits.push_back(0); }
 
-    BigInt(const std::string &value) : mIsNegative(false) {
+    explicit BigInt(const std::string &value) : mIsNegative(false) {
         if (value.empty()) {
             throw std::runtime_error("BigInt: empty string");
         }
